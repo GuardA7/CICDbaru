@@ -50,6 +50,8 @@ jobs:
 
       - name: Build Node.JS
         run: npm run build
+
+
  laravel_test:
     name: Laravel Test
     runs-on: ubuntu-latest
