@@ -101,6 +101,6 @@ jobs:
     - name: Send notification to Telegram
       env:
         TELEGRAM_BOT_TOKEN: ${{ 6755163151:AAF5sws4y0cEmK9y866zBJzv4UJjsc6AP0I}}
-        TELEGRAM_CHAT_ID: ${{ 6755163151 }}
+        TELEGRAM_CHAT_ID: ${{ @ajs070904_bot }}
       run: |
         curl -s -X POST https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage -d chat_id=${TELEGRAM_CHAT_ID} -d text="Build completed for ${{ github.repository }} on branch ${{ github.ref }} by ${{ github.actor }}. Status: ${{ job.status }}"
