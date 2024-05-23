@@ -96,6 +96,7 @@ jobs:
 
       - name: Run tests
         run: ./vendor/bin/phpunit
+
   
   notify_status:
     name: Notify Status
