@@ -98,7 +98,10 @@ jobs:
     steps:
       - name: Check build and test status
         run: |
-          if [[ "${{ needs.laravel_build.outcome }}" == "success" && "${{ needs.laravel_test.outcome }}" == "success" ]]; then
+          BUILD_STATUS=$(curl -s -X GET "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ needs.laravel_build.run_id }}/jobs" | jq '.jobs[] | select(.name == "Laravel Build") | .conclusion')
+          TEST_STATUS=$(curl -s -X GET "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ needs.laravel_test.run_id }}/jobs" | jq '.jobs[] | select(.name == "Laravel Test") | .conclusion')
+
+          if [[ "${BUILD_STATUS}" == "\"success\"" && "${TEST_STATUS}" == "\"success\"" ]]; then
             export STATUS="Berhasil"
           else
             export STATUS="Gagal"
